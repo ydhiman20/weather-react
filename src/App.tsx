@@ -1,8 +1,12 @@
-import "./App.css";
 import Weather from "./components/weather/Weather";
 
 function App() {
-  return <Weather />;
+  return (
+    <>
+      {/* <LogsContainer /> */}
+      <Weather />
+    </>
+  );
 }
 
 export default App;

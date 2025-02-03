@@ -1,5 +1,6 @@
-import Input from "../input/Input";
 import { FC, useCallback } from "react";
+
+import Input from "../input/Input";
 
 interface HeaderProps {
   parentValueInput: (value: string) => void;
@@ -17,9 +18,7 @@ const Header: FC<HeaderProps> = ({ parentValueInput }) => {
 
   return (
     <header className="container mx-auto">
-      <h1 className="text-4xl font-normal text-center mb-12">
-        Weather Forecast
-      </h1>
+      <h1 className="text-4xl font-bold text-center mb-12">Weather Forecast</h1>
       <Input parentValue={handleInputChange} />
     </header>
   );

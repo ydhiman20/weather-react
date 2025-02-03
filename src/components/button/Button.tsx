@@ -15,13 +15,13 @@ const Button: FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      onClick={onClick}
-      type="button" // Prevents default form submission
       aria-label={ariaLabel} // Accessibility label
-      className={`px-4 py-2 text-white shadow-lg bg-black rounded-r-md transition-colors duration-300 ${
+      className={`px-4 py-2 w-48 text-white shadow-2xl bg-gray-800 rounded-r-md transition-colors duration-300 ${
         loading ? "opacity-50 cursor-not-allowed" : ""
       }`}
       disabled={loading} // Disable button when loading
+      onClick={onClick}
+      type="button" // Prevents default form submission
     >
       {loading ? "Loading..." : children} {/* Show loading text or children */}
     </button>
