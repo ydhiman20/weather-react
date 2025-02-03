@@ -1,35 +1,29 @@
-import { useEffect, useState, useCallback, SetStateAction } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 import { ApiHelper } from "../../utils/api/ApiHelper";
 import Header from "../header/Header";
 import MessageCard from "../messageCard/MessageCard";
-import WeatherCard from "../weathercard/Weathercard";
+
+import { WeatherData } from "../../type/weather";
+
+import WeatherCard from "../weathercard/WeatherCard";
 
 const Weather = () => {
-  const [weather, setWeather] = useState(null);
-  const [city, setCity] = useState("");
-  const [loading, setLoading] = useState(false);
-  // const [citySuggestions, setCitySuggestions] = useState([]);
+  const [weather, setWeather] = useState<WeatherData | null>(null);
+  const [city, setCity] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   const { WEATHER_APP_KEY } = process.env;
   const BASE_API_URL = "https://api.weatherapi.com/v1/forecast.json";
-  // const SEARCH_API_URL = "https://api.weatherapi.com/v1/search.json";
 
-  const apiEndPoint = useCallback(() => {
+  const apiEndPoint = useCallback((): string => {
     return `${BASE_API_URL}?key=${WEATHER_APP_KEY}&q=${city}&days=6&aqi=yes`;
   }, [WEATHER_APP_KEY, city]);
-
-  // const apiSearchEndPoint = useCallback(
-  //   (query) => {
-  //     return `${SEARCH_API_URL}?key=${WEATHER_APP_KEY}&q=${query}`;
-  //   },
-  //   [WEATHER_APP_KEY]
-  // );
 
   const fetchWeatherData = useCallback(async () => {
     if (!city) return;
     setLoading(true);
     try {
-      const data = await ApiHelper(apiEndPoint());
+      const data = await ApiHelper<WeatherData>(apiEndPoint());
       setWeather(data);
     } catch (error) {
       console.error("Failed to fetch weather data:", error);
@@ -37,22 +31,6 @@ const Weather = () => {
       setLoading(false);
     }
   }, [apiEndPoint, city]);
-
-  // const fetchCitySuggestions = useCallback(
-  //   async (query) => {
-  //     if (!query) {
-  //       setCitySuggestions([]);
-  //       return;
-  //     }
-  //     try {
-  //       const suggestions = await ApiHelper(apiSearchEndPoint(query));
-  //       setCitySuggestions(suggestions.map((item) => item.name));
-  //     } catch (error) {
-  //       console.error("Failed to fetch city suggestions:", error);
-  //     }
-  //   },
-  //   [apiSearchEndPoint]
-  // );
 
   const fetchDataGeoLocation = useCallback(() => {
     if (!("geolocation" in navigator)) return;
@@ -77,23 +55,9 @@ const Weather = () => {
     fetchWeatherData();
   }, [fetchWeatherData]);
 
-  const handleCityChange = useCallback((cityName: SetStateAction<string>) => {
+  const handleCityChange = useCallback((cityName: string) => {
     setCity(cityName);
-    // setCitySuggestions([]); // Clear suggestions after a city is selected
   }, []);
-
-  // const handleCityInputChange = useCallback(
-  //   (query) => {
-  //     setCity(query);
-  //     // Debounced API call
-  //     const timeoutId = setTimeout(() => {
-  //       fetchCitySuggestions(query);
-  //     }, 2000); // 300ms debounce
-
-  //     return () => clearTimeout(timeoutId); // Clear previous timeout
-  //   },
-  //   [fetchCitySuggestions]
-  // );
 
   return (
     <div className="flex container m-auto h-full align-middle items-center">

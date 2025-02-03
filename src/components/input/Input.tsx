@@ -42,9 +42,7 @@ const Input: FC<InputProps> = ({ parentValue }) => {
         </div>
 
         {/* Search Button */}
-        <Button onClick={handleSearch} type="button">
-          Search
-        </Button>
+        <Button onClick={handleSearch}>Search</Button>
       </div>
     </div>
   );

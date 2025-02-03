@@ -1,17 +1,21 @@
+import React, { useState, useEffect } from "react";
 import { Console, Hook, Unhook } from "console-feed";
-import { useState, useEffect } from "react";
 
-const LogsContainer = () => {
-  const [logs, setLogs] = useState([]);
+const LogsContainer: React.FC = () => {
+  const [logs, setLogs] = useState<any[]>([]);
 
-  // run once!
   useEffect(() => {
+    // Hook the console to capture logs
     const hookedConsole = Hook(
       window.console,
-      (log) => setLogs((currLogs) => [...currLogs, log]),
+      (log: any) => setLogs((currLogs) => [...currLogs, log]),
       false
     );
-    return () => Unhook(hookedConsole);
+
+    // Return the cleanup function (no return value or a function returning void)
+    return () => {
+      Unhook(hookedConsole); // Cleanup the console hook
+    };
   }, []);
 
   return <Console filter={[]} logs={logs} variant="light" />;

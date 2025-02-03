@@ -1,7 +1,7 @@
-export async function ApiHelper(
+export async function ApiHelper<T>(
   url: string,
   options: RequestInit = {}
-): Promise<unknown> {
+): Promise<T | null> {
   try {
     const response = await fetch(url, options);
 
@@ -13,11 +13,9 @@ export async function ApiHelper(
     }
 
     const data = await response.json();
-    return data;
+    return data as T; // Assert that the response matches the expected type
   } catch (error) {
     console.error("ApiHelper caught error:", error);
     return null; // Return null to handle errors gracefully
   }
 }
-
-

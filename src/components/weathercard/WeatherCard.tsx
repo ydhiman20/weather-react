@@ -3,43 +3,7 @@ import {
   getWeekday,
   roundTemperature,
 } from "../../utils/helper/helper";
-
-interface Condition {
-  text: string;
-  icon: string;
-}
-
-interface CurrentWeather {
-  temp_c: number;
-  condition: Condition;
-  humidity: number;
-  cloud: number;
-  wind_mph: number;
-  last_updated: string;
-}
-
-interface ForecastDay {
-  date: string;
-  day: {
-    avgtemp_c: number;
-    condition: Condition;
-  };
-}
-
-interface Forecast {
-  forecastday: ForecastDay[];
-}
-
-interface Location {
-  name: string;
-  region: string;
-}
-
-interface WeatherData {
-  current: CurrentWeather;
-  forecast: Forecast;
-  location: Location;
-}
+import { WeatherData } from "../../type/weather";
 
 interface DataObj {
   data: WeatherData;
