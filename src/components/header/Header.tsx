@@ -24,7 +24,7 @@ const Header: FC<HeaderProps> = ({
   return (
     <header className="container mx-auto bg-[#f6f6f8] p-8 md:p-10">
       <h1 className="text-2xl md:text-5xl mb-4 md:mb-6 font-bold">
-        Weather Forecast
+        WeatherWise
       </h1>
       <Input
         fetchDataGeoLocation={fetchDataGeoLocation}
