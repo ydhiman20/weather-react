@@ -12,16 +12,16 @@ export interface CurrentWeather {
   last_updated: string;
 }
 
+export interface Forecast {
+  forecastday: ForecastDay[];
+}
+
 export interface ForecastDay {
   date: string;
   day: {
     avgtemp_c: number;
     condition: Condition;
   };
-}
-
-export interface Forecast {
-  forecastday: ForecastDay[];
 }
 
 export interface Location {

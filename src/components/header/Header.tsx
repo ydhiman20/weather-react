@@ -1,12 +1,17 @@
+/* eslint-disable no-unused-vars */
 import { FC, useCallback } from "react";
 
 import Input from "../input/Input";
 
 interface HeaderProps {
   parentValueInput: (value: string) => void;
+  fetchDataGeoLocation: () => void;
 }
 
-const Header: FC<HeaderProps> = ({ parentValueInput }) => {
+const Header: FC<HeaderProps> = ({
+  parentValueInput,
+  fetchDataGeoLocation,
+}) => {
   // Callback function to handle input changes
   const handleInputChange = useCallback(
     (inputValue: string) => {
@@ -17,9 +22,14 @@ const Header: FC<HeaderProps> = ({ parentValueInput }) => {
   );
 
   return (
-    <header className="container mx-auto">
-      <h1 className="text-4xl font-bold text-center mb-12">Weather Forecast</h1>
-      <Input parentValue={handleInputChange} />
+    <header className="container mx-auto bg-[#f6f6f8] p-8 md:p-10">
+      <h1 className="text-2xl md:text-5xl mb-4 md:mb-6 font-bold">
+        Weather Forecast
+      </h1>
+      <Input
+        fetchDataGeoLocation={fetchDataGeoLocation}
+        parentValue={handleInputChange}
+      />
     </header>
   );
 };

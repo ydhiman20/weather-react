@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Console, Hook, Unhook } from "console-feed";
+import React, { useEffect, useState } from "react";
 
 const LogsContainer: React.FC = () => {
   const [logs, setLogs] = useState<any[]>([]);

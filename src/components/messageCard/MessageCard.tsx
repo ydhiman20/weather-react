@@ -16,7 +16,7 @@ export default function MessageCard({ message }: MessageProps) {
 
           {/* Right Card */}
           <div className="w-full lg:w-1/2 flex ml-0">
-            <div className="lg:my-3 bg-gray-800 p-8 lg:rounded-r-lg w-full shadow-2xl text-gray-400">
+            <div className="bg-blue-500 p-8 lg:rounded-r-lg w-full shadow-2xl text-white">
               {message}
             </div>
           </div>

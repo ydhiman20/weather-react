@@ -1,11 +1,9 @@
-import { useEffect, useState, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 
+import { WeatherData } from "../../type/weather";
 import { ApiHelper } from "../../utils/api/ApiHelper";
 import Header from "../header/Header";
 import MessageCard from "../messageCard/MessageCard";
-
-import { WeatherData } from "../../type/weather";
-
 import WeatherCard from "../weathercard/WeatherCard";
 
 const Weather = () => {
@@ -15,9 +13,10 @@ const Weather = () => {
   const { WEATHER_APP_KEY } = process.env;
   const BASE_API_URL = "https://api.weatherapi.com/v1/forecast.json";
 
-  const apiEndPoint = useCallback((): string => {
-    return `${BASE_API_URL}?key=${WEATHER_APP_KEY}&q=${city}&days=6&aqi=yes`;
-  }, [WEATHER_APP_KEY, city]);
+  const apiEndPoint = useCallback(
+    (): string => `${BASE_API_URL}?key=${WEATHER_APP_KEY}&q=${city}&days=6&aqi=yes`,
+    [WEATHER_APP_KEY, city]
+  );
 
   const fetchWeatherData = useCallback(async () => {
     if (!city) return;
@@ -60,9 +59,12 @@ const Weather = () => {
   }, []);
 
   return (
-    <div className="flex container m-auto h-full align-middle items-center">
+    <div className="flex md:rounded-2xl overflow-hidden align-middle items-center bg-white  w-full">
       <div className="mx-auto container">
-        <Header parentValueInput={handleCityChange} />
+        <Header
+          fetchDataGeoLocation={fetchDataGeoLocation}
+          parentValueInput={handleCityChange}
+        />
         {loading ? (
           <MessageCard message="Weather data loading..." />
         ) : weather ? (
