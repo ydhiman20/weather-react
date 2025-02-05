@@ -2,7 +2,7 @@
 
 **WeatherWise** is a modern weather application built with **React.js** and **TailwindCSS**. It provides real-time weather updates based on user input or geolocation, offering accurate forecasts for cities worldwide. The app is designed for seamless performance and an intuitive user experience, allowing users to check the weather, view details like temperature, humidity, and wind conditions, and plan their day effectively.
 
-![Image](https://github.com/user-attachments/assets/af5f9dba-55e3-4b14-b742-f77a25a0a7dd)
+![Image](https://github.com/user-attachments/assets/8c602a9f-aea0-4fd8-9b18-521bbb9ae270)
 
 ## Features
 
